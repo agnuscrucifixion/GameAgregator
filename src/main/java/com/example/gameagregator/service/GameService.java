@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class GameService {
     private GameRepository gameRepository;
+    private final DownloadService downloadService;
 
     public List<Game> searchGames(String title) {
         return gameRepository.findByTitleContaining(title);
@@ -21,5 +22,9 @@ public class GameService {
 
     public Game saveGame(Game game) {
         return gameRepository.save(game);
+    }
+
+    public void deleteGameFromDevice(String gameName) {
+        downloadService.deleteFile(gameName);
     }
 }
