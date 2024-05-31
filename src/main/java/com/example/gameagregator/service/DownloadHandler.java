@@ -28,7 +28,7 @@ public class DownloadHandler extends BinaryWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
         String fileName = message.getPayload();
-        InputStream fileStream = null;
+        InputStream fileStream;
         try {
             fileStream = downloadService.downloadFile(fileName);
         } catch (IOException e) {
@@ -42,7 +42,6 @@ public class DownloadHandler extends BinaryWebSocketHandler {
                 ByteBuffer byteBuffer = ByteBuffer.wrap(buffer, 0, bytesRead);
                 session.sendMessage(new BinaryMessage(byteBuffer));
             }
-
             session.close(CloseStatus.NORMAL);
         } catch (Exception e) {
             throw new RuntimeException(e);
