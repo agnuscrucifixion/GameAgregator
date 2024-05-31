@@ -15,6 +15,9 @@ public class GameService {
     public List<Game> searchGames(String title) {
         return gameRepository.findByTitleContaining(title);
     }
+    public Game searchFullMatchGame(String title) {
+        return gameRepository.findGameByTitle(title);
+    }
 
     public Game saveGame(Game game) {
         return gameRepository.save(game);

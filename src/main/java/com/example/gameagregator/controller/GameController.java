@@ -21,6 +21,12 @@ public class GameController {
         return ResponseEntity.ok(games);
     }
 
+    @GetMapping("/fullMatchSearch/{title}")
+    public ResponseEntity<Game> searchFullMatchGame(@PathVariable String title) {
+        Game game = gameService.searchFullMatchGame(title);
+        return ResponseEntity.ok(game);
+    }
+
     @PostMapping
     public ResponseEntity<Game> addGame(@RequestBody Game game) {
         Game savedGame = gameService.saveGame(game);
