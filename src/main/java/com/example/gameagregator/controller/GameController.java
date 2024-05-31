@@ -33,7 +33,7 @@ public class GameController {
         return ResponseEntity.ok(savedGame);
     }
 
-    @DeleteMapping("/{gameTitle}")
+    @DeleteMapping("/delete/{gameTitle}")
     public void delete(@PathVariable String gameTitle) {
         gameService.deleteGameFromDevice(gameTitle);
     }
