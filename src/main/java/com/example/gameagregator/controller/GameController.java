@@ -27,10 +27,15 @@ public class GameController {
         return ResponseEntity.ok(game);
     }
 
-    @PostMapping
+    @PostMapping("/addgame")
     public ResponseEntity<Game> addGame(@RequestBody Game game) {
         Game savedGame = gameService.saveGame(game);
         return ResponseEntity.ok(savedGame);
+    }
+
+    @DeleteMapping("/{gameTitle}")
+    public void delete(@PathVariable String gameTitle) {
+        gameService.deleteGameFromDevice(gameTitle);
     }
 
 }
